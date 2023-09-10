@@ -1,6 +1,8 @@
 const express = require('express');
 const buyRouter = require('./routes/buy');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
 
 
 const cors = require('cors');
@@ -13,7 +15,7 @@ const port = 5000;
 
 const connect = async () => {
     try {
-        await mongoose.connect("mongodb+srv://riteshdb:riteshdb@cluster0.lcauzyl.mongodb.net/course?retryWrites=true&w=majority");
+        await mongoose.connect(process.env.MONGO_URL);
         console.log("Connected to mongoDB")
     } catch (error) {
         console.log(error)
